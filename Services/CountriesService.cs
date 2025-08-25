@@ -23,6 +23,7 @@ namespace Services
             Country country = countryAddRequest!.ToCountry();
             // Generate a new Guid for the country
             country.CountryId = Guid.NewGuid();
+            
 
             _countries.Add(country);
             return country.ToCountryResponse();
