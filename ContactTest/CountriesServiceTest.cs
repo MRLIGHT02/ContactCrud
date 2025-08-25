@@ -64,7 +64,7 @@ namespace ContactTest
         public void AddCountry_ProperCountryDetails()
         {
             //Arrange
-            CountryAddRequest? request = new CountryAddRequest() { CountryName = "india" };
+            CountryAddRequest? request = new CountryAddRequest() { CountryName = "India" };
 
             //Act
             CountryResponse response = _countriesService.AddCountry(request);

@@ -20,7 +20,7 @@ namespace Services
         {
             // Convert object from CountryAddRequest to Country
 
-            Country country = countryAddRequest.ToCountry();
+            Country country = countryAddRequest!.ToCountry();
             // Generate a new Guid for the country
             country.CountryId = Guid.NewGuid();
 
