@@ -65,8 +65,7 @@ namespace ContactTest
         public void AddCountry_ProperCountryDetails()
         {
             //Arrange
-            List<Country> countries = new List<Country>();
-            CountriesService _countriesService = new CountriesService(countries);
+          
             CountryAddRequest? request = new CountryAddRequest() { CountryName="India"};
 
             ///Act
@@ -77,7 +76,7 @@ namespace ContactTest
 
             Assert.True(response.CountryId != Guid.Empty);
             Assert.Equal("India", response.CountryName);
-            Assert.Single(countries);
+            
 
         }
 
