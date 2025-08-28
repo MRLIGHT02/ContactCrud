@@ -11,6 +11,10 @@ namespace Services
 
         private readonly List<Country> _countries;
 
+        public CountriesService()
+        {
+        }
+
         public CountriesService(List<Country> countries)
         {
             _countries = countries;
@@ -21,11 +25,13 @@ namespace Services
             // Convert object from CountryAddRequest to Country
 
             Country country = countryAddRequest!.ToCountry();
+         
             // Generate a new Guid for the country
             country.CountryId = Guid.NewGuid();
             
 
             _countries.Add(country);
+           
             return country.ToCountryResponse();
         }
     }

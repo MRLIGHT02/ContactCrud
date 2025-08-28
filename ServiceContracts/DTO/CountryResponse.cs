@@ -1,9 +1,4 @@
 ﻿using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceContracts.DTO
 {
@@ -26,11 +21,12 @@ namespace ServiceContracts.DTO
     /// <remarks>This class contains methods that extend the functionality of the <see cref="Country"/> type,
     /// enabling additional operations such as converting a <see cref="Country"/> instance to a <see
     /// cref="CountryResponse"/>.</remarks>
-    public static class CountryExtensions {
-        
+    public static class CountryExtensions
+    {
+
         public static CountryResponse ToCountryResponse(this Country country)
         {
-            return new CountryResponse() { CountryName=country.CountryName,CountryId=country.CountryId };
+            return new CountryResponse() {CountryId = country.CountryId,CountryName = country.CountryName};
 
         }
 

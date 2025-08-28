@@ -1,10 +1,8 @@
-﻿using BenchmarkDotNet.Attributes;
-using Entities;
+﻿using Entities;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using Services;
-using System;
-using System.Collections.Generic;
+using Xunit;
 
 
 namespace ContactTest
@@ -12,10 +10,10 @@ namespace ContactTest
     public class CountriesServiceTest
     {
         private readonly ICountriesService _countriesService;
-        
-        public CountriesServiceTest(CountriesService countriesService)
+
+        public CountriesServiceTest()
         {
-            _countriesService = countriesService;
+            _countriesService = new CountriesService();
 
         }
 
@@ -27,7 +25,10 @@ namespace ContactTest
             CountryAddRequest? request = null;
             // Act & Assert
 
-            Assert.Throws<ArgumentNullException>(() => _countriesService.AddCountry(request));
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                _countriesService.AddCountry(request);
+            });
 
         }
         // When CountryName is null, it should throw an ArgumentNullException
@@ -35,7 +36,7 @@ namespace ContactTest
         public void AddCountry_NullCountryName_ThrowsArgumentException()
         {
             // Arrange
-            CountryAddRequest? request = new CountryAddRequest() { CountryName=null};
+            CountryAddRequest? request = new CountryAddRequest() { CountryName = null };
             // Act & Assert
 
             Assert.Throws<ArgumentException>(() => _countriesService.AddCountry(request));
@@ -64,21 +65,26 @@ namespace ContactTest
         public void AddCountry_ProperCountryDetails()
         {
             //Arrange
-            CountryAddRequest? request = new CountryAddRequest() { CountryName = "India" };
+            List<Country> countries = new List<Country>();
+            CountriesService _countriesService = new CountriesService(countries);
+            CountryAddRequest? request = new CountryAddRequest() { CountryName="India"};
 
             ///Act
             CountryResponse response = _countriesService.AddCountry(request);
-            
+
 
             //Assert
+
             Assert.True(response.CountryId != Guid.Empty);
-            
+            Assert.Equal("India", response.CountryName);
+            Assert.Single(countries);
+
         }
 
-        
+
+       
 
 
-        
 
     }
 }
